@@ -13,7 +13,7 @@ function App() {
     if (status === 'Running') {
       interval = setInterval(async () => {
         try {
-          const res = await fetch('http://localhost:5000/api/bot/transcript');
+          const res = await fetch('https://chisquarex.onrender.com/api/bot/transcript');
           const data = await res.json();
           setTranscript(data.transcript);
         } catch (err) {
@@ -27,7 +27,7 @@ function App() {
   const startBot = async () => {
     setStatus('Starting...');
     try {
-      await fetch('http://localhost:5000/api/bot/start', {
+      await fetch('https://chisquarex.onrender.com/api/bot/start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ meetLink })
@@ -39,14 +39,14 @@ function App() {
   };
 
   const stopBot = async () => {
-    await fetch('http://localhost:5000/api/bot/stop', { method: 'POST' });
+    await fetch('https://chisquarex.onrender.com/api/bot/stop', { method: 'POST' });
     setStatus('Idle');
   };
 
   const generateSummary = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/bot/summarize', { method: 'POST' });
+      const res = await fetch('https://chisquarex.onrender.com/api/bot/summarize', { method: 'POST' });
       const data = await res.json();
       setSummary(data.summary);
     } catch (err) {
